@@ -1,7 +1,7 @@
 #ifndef PHONE_BOOK_H
 # define PHONE_BOOK_H
 
-# include "PbContact_class.h"
+# include "PbContact.h"
 
 class PhoneBook {
 public:

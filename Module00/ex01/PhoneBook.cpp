@@ -1,4 +1,4 @@
-#include "PhoneBook_class.h"
+#include "PhoneBook.h"
 #include <iostream>
 #include <iomanip>
 
@@ -85,6 +85,7 @@ void		PhoneBook::cmd_search( void ) const {
 
 	std::string	rem;
 	int			index;
+	int 		n;
 
 	this->show_contacts();
 
@@ -101,7 +102,8 @@ void		PhoneBook::cmd_search( void ) const {
 		return ;
 	}
 	std::getline(std::cin, rem);
-	if (index < 1 || index > this->contacts_count)
+	n = (this->contacts_count > 7) ? 8 : this->contacts_count;
+	if (index < 1 || index > n)
 		std::cout << "Error: index is out of range;\n";
 	else
 		this->contacts[index - 1].get_contact();
