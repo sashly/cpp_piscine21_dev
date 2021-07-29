@@ -16,8 +16,7 @@ private:
 	void		cmd_add( void );
 	void		cmd_search( void ) const;
 
-	void		get_contact( void ) const;
-	void 		set_contact( void );
+	void		show_contacts( void ) const;
 
 	PbContact	contacts[8];
 	int			contacts_count;

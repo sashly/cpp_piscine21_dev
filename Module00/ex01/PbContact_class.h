@@ -8,9 +8,9 @@ public:
 
 	void	get_contact( void ) const;
 
-	void	get_first_name( void ) const;
-	void	get_last_name( void ) const;
-	void	get_nickname( void ) const;
+	std::string	const	&get_first_name( void ) const;
+	std::string const	&get_last_name( void ) const;
+	std::string const	&get_nickname( void ) const;
 
 	void	set_contact( void );
 

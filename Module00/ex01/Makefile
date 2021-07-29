@@ -28,6 +28,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CPPC) $(CFLAGS) $(OBJS) -o $(NAME) -I$(HEADERS)
+# -g -fsanitize=address
 
 clean:
 	$(RM) $(OBJS)
