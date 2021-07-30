@@ -14,14 +14,17 @@ public:
 	int 	lvl_index(std::string const &lvl) const;
 
 private:
-
-	int				lvls_n;
-	std::string 	*lvls;
+	typedef void	(Karen::*levels)( void );
 
 	void	debug( void );
 	void	info( void );
 	void	warning( void );
 	void	error( void );
+
+	int				lvls_n_;
+	std::string		lvls_[4];
+	levels			lvls_ptr_[4];
+
 };
 
 #endif

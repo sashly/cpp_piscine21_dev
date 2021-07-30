@@ -3,26 +3,25 @@
 
 Karen::Karen() {
 
-	this->lvls_n = 4;
+	this->lvls_n_ = 4;
+	this->lvls_[0] = "DEBUG";
+	this->lvls_[1] = "INFO";
+	this->lvls_[2] = "WARNING";
+	this->lvls_[3] = "ERROR";
 
-	this->lvls = new std::string[4];
-	this->lvls[0] = "DEBUG";
-	this->lvls[1] = "INFO";
-	this->lvls[2] = "WARNING";
-	this->lvls[3] = "ERROR";
+	this->lvls_ptr_[0] = &Karen::debug;
+	this->lvls_ptr_[1] = &Karen::info;
+	this->lvls_ptr_[2] = &Karen::warning;
+	this->lvls_ptr_[3] = &Karen::error;
 }
 
-Karen::~Karen() {
-
-	delete [] this->lvls;
-}
+Karen::~Karen() {}
 
 void	Karen::debug() {
 
 	std::cout << "I love to get extra bacon for my 7XL-double-cheese-"
 				 "triple-pickle-special-ketchup burger.\nI just love it!\n";
 }
-
 
 void	Karen::info() {
 
@@ -45,24 +44,17 @@ void	Karen::error() {
 
 int 	Karen::lvl_index(std::string const &lvl) const {
 
-	for (int i = 0; i < this->lvls_n; i++)
-		if (lvl == this->lvls[i])
+	for (int i = 0; i < this->lvls_n_; i++)
+		if (lvl == this->lvls_[i])
 			return (i);
 	return (-1);
 }
 
 void	Karen::complain(std::string level) {
 
-	typedef void	(Karen::*levels)( void );
-	levels			lvls_p[4];
 	int				lvl_ind;
-
-	lvls_p[0] = &Karen::debug;
-	lvls_p[1] = &Karen::info;
-	lvls_p[2] = &Karen::warning;
-	lvls_p[3] = &Karen::error;
 
 	lvl_ind = this->lvl_index(level);
 	if (lvl_ind != -1)
-		(this->*lvls_p[lvl_ind])();
+		(this->*lvls_ptr_[lvl_ind])();
 }

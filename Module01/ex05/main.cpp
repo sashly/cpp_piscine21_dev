@@ -10,6 +10,14 @@ int	main( void ) {
 	karen.complain("WARNING");
 	karen.complain("ERROR");
 
+	karen.complain("INFO");
+	karen.complain("INFO");
+	karen.complain("INFO");
+	karen.complain("INFO");
+	karen.complain("INFO");
+
+	karen.complain("ERROR");
+
 	karen.complain("ERRORR");
 	karen.complain("fsdfsdf");
 	karen.complain("");

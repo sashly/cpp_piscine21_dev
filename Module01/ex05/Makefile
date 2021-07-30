@@ -1,5 +1,5 @@
 
-NAME       =    karen
+NAME       =    karen2.0
 UNAME_S	   =    $(shell uname -s)
 CPPC       =    clang++
 CFLAGS     =    -Wall -Wextra -Werror -std=c++98

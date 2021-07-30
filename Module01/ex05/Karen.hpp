@@ -9,19 +9,22 @@ public:
 	Karen();
 	~Karen();
 
-	void	complain(std::string level);
+	void			complain(std::string level);
 
 private:
+	typedef void	(Karen::*levels)( void );
 
-	int				lvls_n;
-	std::string 	*lvls;
+	void			debug( void );
+	void			info( void );
+	void			warning( void );
+	void			error( void );
 
-	int 	lvl_index(std::string const &lvl) const;
+	int 			lvl_index(std::string const &lvl) const;
 
-	void	debug( void );
-	void	info( void );
-	void	warning( void );
-	void	error( void );
+	int				lvls_n_;
+	std::string		lvls_[4];
+	levels			lvls_ptr_[4];
+
 };
 
 #endif
