@@ -1,4 +1,4 @@
-#include "PbContact_class.h"
+#include "PbContact.h"
 #include <iostream>
 
 std::string const	&PbContact::get_first_name( void ) const {

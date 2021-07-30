@@ -13,8 +13,8 @@ HEADERS	   =    .
 
 SRCS_DIR   =    .
 SRCS_LIST  =    main.cpp \
-				PbContact_class.cpp \
-				PhoneBook_class.cpp
+				PbContact.cpp \
+				PhoneBook.cpp
 SRCS       =    $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
 
 OBJS_DIR   =    ./objs_$(UNAME_S)
