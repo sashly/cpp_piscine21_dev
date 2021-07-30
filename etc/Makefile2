@@ -1,0 +1,15 @@
+NAME       =    megaphone
+FLAGS      =    -Wall -Wextra -Werror -std=c++98
+SRCS       =    Phonebook.cpp main.cpp
+
+all: $(NAME)
+
+$(NAME): $(SRCS)
+	clang++ $(FLAGS) $(SRCS) -o $(NAME)
+
+fclean:
+	rm -rf $(NAME)
+
+re:          fclean all
+
+.PHONY:      all fclean re
