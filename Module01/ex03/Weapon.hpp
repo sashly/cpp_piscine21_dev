@@ -15,7 +15,7 @@ public:
 	void 				setType(std::string const &name);
 
 private:
-	std::string	weapon_type_;
+	std::string	type;
 };
 
 
