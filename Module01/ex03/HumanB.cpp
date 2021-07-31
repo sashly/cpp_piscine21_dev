@@ -10,6 +10,8 @@ void	HumanB::attack() const {
 	if (this->weapon_)
 		std::cout << this->name_ << " attacks with his "
 				  << (this->weapon_)->getType() << "\n";
+	else
+		std::cout << this->name_ << " cannot attack (has not a weapon);\n";
 }
 
 void	HumanB::setWeapon(Weapon const &wep) {

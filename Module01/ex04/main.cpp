@@ -23,11 +23,6 @@ int	replace_open_parse(char **argv, std::ifstream &file,
 	}
 	file_name += ".replace";
 	tmp = new char[file_name.size() + 1];
-	if (!tmp) {
-		std::cout << "Error: memalloc;\n";
-		file.close();
-		return (0);
-	}
 	for (i = 0; i < file_name.size(); i++)
 		tmp[i] = file_name[i];
 	tmp[i] = '\0';
@@ -48,7 +43,7 @@ int	file_to_buf(std::ifstream &file, std::string &buf) {
 
 	while (true) {
 		std::getline(file, tmp_str);
-		if (file.fail()) {
+		if (file.bad()) {
 			std::cout << "Error: I/O error while reading;\n";
 			return (0);
 		}
@@ -65,9 +60,9 @@ int replace_process(std::string const &s1, std::string const &s2,
 					std::ifstream &file, std::ofstream &file_replace) {
 
 	std::string	buf;
-	size_t	pos_old;
-	size_t	pos_new;
-	size_t	substr_len;
+	size_t		pos_old;
+	size_t		pos_new;
+	size_t		substr_len;
 
 	if (!file_to_buf(file, buf))
 		return (0);
@@ -85,7 +80,7 @@ int replace_process(std::string const &s1, std::string const &s2,
 	return (1);
 }
 
-int	replace_main(char **argv) {
+int	replace(char **argv) {
 
 	std::ifstream	file;
 	std::ofstream	file_replace;
@@ -106,7 +101,7 @@ int	replace_main(char **argv) {
 int	main(int argc, char **argv) {
 
 	if (argc == 4) {
-		if (!replace_main(argv))
+		if (!replace(argv))
 			return (1);
 	}
 	else
