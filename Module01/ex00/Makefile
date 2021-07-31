@@ -1,23 +1,17 @@
 
-UNAME_S	   =   $(shell uname -s)
-
 NAME       =    zombie
-
+UNAME_S	   =   	$(shell uname -s)
 CPPC       =    clang++
-
 CFLAGS     =    -Wall -Wextra -Werror -std=c++98
-
 RM         =    rm -f
 
 HEADERS	   =    .
-
 SRCS_DIR   =    .
 SRCS_LIST  =    main.cpp \
 				Zombie.cpp \
 				newZombie.cpp \
 				randomChump.cpp
 SRCS       =    $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
-
 OBJS_DIR   =    ./objs_$(UNAME_S)
 OBJS       =    $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
 

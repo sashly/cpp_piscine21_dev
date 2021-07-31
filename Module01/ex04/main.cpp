@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <cerrno>
 
 int	replace_open_parse(char **argv, std::ifstream &file,
 					   std::ofstream &file_replace) {
@@ -16,7 +17,8 @@ int	replace_open_parse(char **argv, std::ifstream &file,
 	}
 	file.open(argv[1]);
 	if (!file) {
-		std::cout << "Error: cannot open the file \"" << argv[1] << "\"\n";
+		std::cout << "Error: cannot open the file \"" << argv[1] << "\" ("
+				  << std::strerror(errno) << ");\n";
 		return (0);
 	}
 	file_name += ".replace";
@@ -32,7 +34,8 @@ int	replace_open_parse(char **argv, std::ifstream &file,
 	file_replace.open(tmp);
 	delete [] tmp;
 	if (!file_replace) {
-		std::cout << "Error: cannot open the .replace file;\n";
+		std::cout << "Error: cannot open the .replace file ("
+				  << std::strerror(errno) << ");\n";;
 		file.close();
 		return (0);
 	}

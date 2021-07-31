@@ -15,7 +15,7 @@ public:
 	void	init_default(std::string const &name);
 
 private:
-	std::string	name_;
+	std::string	name;
 };
 
 Zombie* zombieHorde( int N, std::string name );

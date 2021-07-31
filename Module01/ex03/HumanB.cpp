@@ -1,10 +1,7 @@
 #include "HumanB.hpp"
 #include <iostream>
 
-HumanB::HumanB(std::string const &name) : name_(name) {
-
-	this->weapon_ = NULL;
-}
+HumanB::HumanB(std::string const &name) : name_(name), weapon_(NULL) {}
 
 HumanB::~HumanB() {}
 

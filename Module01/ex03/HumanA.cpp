@@ -1,8 +1,6 @@
 #include "HumanA.hpp"
 #include <iostream>
 
-//NAME attacks with his WEAPON_TYPE
-
 HumanA::HumanA(std::string const &name, Weapon const &wep) : name_(name),
 													 	     weapon_(wep) {}
 

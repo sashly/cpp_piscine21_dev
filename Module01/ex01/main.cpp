@@ -17,9 +17,6 @@ int	main(int argc, char **argv) {
 			n_zmb = tmp;
 	}
 	zmb_horde = zombieHorde(n_zmb, zmb_name);
-	if (!zmb_horde)
-		return (1);
-
 	for (int i = 0; i < n_zmb; ++i)
 		zmb_horde[i].announce();
 
