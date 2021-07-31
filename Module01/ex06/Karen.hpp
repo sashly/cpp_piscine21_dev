@@ -21,9 +21,9 @@ private:
 	void	warning( void );
 	void	error( void );
 
-	int				lvls_n_;
-	std::string		lvls_[4];
-	levels			lvls_ptr_[4];
+	static const int			lvls_n_;
+	static std::string const	lvls_[4];
+	static  const levels		lvls_ptr_[4];
 
 };
 

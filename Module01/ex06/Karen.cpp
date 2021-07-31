@@ -1,20 +1,14 @@
 #include "Karen.hpp"
 #include <iostream>
 
-Karen::Karen() {
+const int			Karen::lvls_n_ = 4;
 
-	this->lvls_n_ = 4;
-	this->lvls_[0] = "DEBUG";
-	this->lvls_[1] = "INFO";
-	this->lvls_[2] = "WARNING";
-	this->lvls_[3] = "ERROR";
+std::string const	Karen::lvls_[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
-	this->lvls_ptr_[0] = &Karen::debug;
-	this->lvls_ptr_[1] = &Karen::info;
-	this->lvls_ptr_[2] = &Karen::warning;
-	this->lvls_ptr_[3] = &Karen::error;
-}
+const Karen::levels	Karen::lvls_ptr_[4] = { &Karen::debug, &Karen::info,
+											   &Karen::warning, &Karen::error };
 
+Karen::Karen() {}
 Karen::~Karen() {}
 
 void	Karen::debug() {
