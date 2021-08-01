@@ -1,5 +1,5 @@
 
-NAME       =    fixed
+NAME       =    fixed1
 UNAME_S	   =    $(shell uname -s)
 CPPC       =    clang++
 CFLAGS     =    -Wall -Wextra -Werror
