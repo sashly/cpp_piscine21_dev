@@ -2,7 +2,7 @@
 NAME       =    fixed
 UNAME_S	   =    $(shell uname -s)
 CPPC       =    clang++
-CFLAGS     =    -Wall -Wextra -Werror -std=c++98
+CFLAGS     =    -Wall -Wextra -Werror
 RM         =    rm -f
 
 HEADERS	   =    .
