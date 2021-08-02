@@ -1,145 +1,158 @@
 #include "Fixed.hpp"
-#include <iostream>
 #include <cmath>
 
-Fixed::Fixed() : value_(0) {}
+Fixed::Fixed( void ) : raw_value_( 0 ) {}
 
-Fixed::Fixed(int const i) {
+Fixed::Fixed( int const i ) {
 
-	this->value_ = i << this->fract_bits;
+	this->raw_value_ = (i << this->fract_bits);
 }
 
-Fixed::Fixed(float const f) {
+Fixed::Fixed( float const f ) {
 
-	this->value_ = std::roundf(f * (1 << this->fract_bits));
+	this->raw_value_ = std::roundf(f * (1 << this->fract_bits));
 }
 
-float		Fixed::toFloat( void ) const {
+Fixed::Fixed( Fixed const &src ) {
 
-	return (((float)this->value_) / (1 << this->fract_bits));
+	*this = src;
 }
 
-int 		Fixed::toInt( void ) const {
+Fixed::~Fixed( void ) {}
 
-	return (this->value_ >> this->fract_bits);
-}
+Fixed		&Fixed::operator=( Fixed const &rhs ) {
 
-Fixed::~Fixed() {}
-
-int			Fixed::getRawBits( void ) const {
-
-	return (this->value_);
-}
-
-void		Fixed::setRawBits( int const raw ) {
-
-	this->value_ = raw;
-}
-
-Fixed const &Fixed::operator=(Fixed const &rhs) {
-
-	this->value_ = rhs.getRawBits();
+	this->raw_value_ = rhs.getRawBits();
 	return (*this);
 }
 
-bool		Fixed::operator>(Fixed const &rhs) const {
+bool		Fixed::operator>( Fixed const &rhs ) const {
 
 	return (this->getRawBits() > rhs.getRawBits());
 }
 
-bool		Fixed::operator<(Fixed const &rhs) const {
+bool		Fixed::operator<( Fixed const &rhs ) const {
 
 	return (this->getRawBits() < rhs.getRawBits());
 }
 
-bool		Fixed::operator>=(Fixed const &rhs) const {
+bool		Fixed::operator>=( Fixed const &rhs ) const {
 
 	return (this->getRawBits() >= rhs.getRawBits());
 }
 
-bool		Fixed::operator<=(Fixed const &rhs) const {
+bool		Fixed::operator<=( Fixed const &rhs ) const {
 
 	return (this->getRawBits() <= rhs.getRawBits());
 }
 
-bool		Fixed::operator==(Fixed const &rhs) const {
+bool		Fixed::operator==( Fixed const &rhs ) const {
 
 	return (this->getRawBits() == rhs.getRawBits());
 }
 
-bool		Fixed::operator!=(Fixed const &rhs) const {
+bool		Fixed::operator!=( Fixed const &rhs ) const {
 
 	return (this->getRawBits() != rhs.getRawBits());
 }
 
-Fixed		Fixed::operator+(Fixed const &rhs) const {
+Fixed		Fixed::operator+( Fixed const &rhs ) const {
 
 	return (Fixed(this->toFloat() + rhs.toFloat()));
 }
 
-Fixed		Fixed::operator-(Fixed const &rhs) const {
+Fixed		Fixed::operator-( Fixed const &rhs ) const {
 
 	return (Fixed(this->toFloat() - rhs.toFloat()));
 }
 
-Fixed		Fixed::operator*(Fixed const &rhs) const {
+Fixed		Fixed::operator*( Fixed const &rhs ) const {
 
 	return (Fixed(this->toFloat() * rhs.toFloat()));
 }
 
-Fixed		Fixed::operator/(Fixed const &rhs) const {
+Fixed		Fixed::operator/( Fixed const &rhs ) const {
 
 	return (Fixed(this->toFloat() / rhs.toFloat()));
 }
 
-Fixed const	&Fixed::operator++() {
+Fixed		&Fixed::operator++( void ) {
 
-	this->value_ += 1;
+	this->raw_value_ += 1;
 	return (*this);
 }
 
-Fixed const	Fixed::operator++(int) {
+Fixed		Fixed::operator++( int ) {
 
 	Fixed	ret(*this);
 
-	this->value_ += 1;
+	++*this;
 	return (ret);
 }
 
-Fixed const	&Fixed::operator--() {
+Fixed		&Fixed::operator--( void ) {
 
-	this->value_ -= 1;
+	this->raw_value_ -= 1;
 	return (*this);
 }
 
-Fixed const	Fixed::operator--(int) {
+Fixed		Fixed::operator--( int ) {
 
 	Fixed	ret(*this);
 
-	this->value_ -= 1;
-	return (*this);
+	--*this;
+	return (ret);
 }
 
-Fixed	&Fixed::max(Fixed &a, Fixed &b) {
+Fixed	&Fixed::max( Fixed &a, Fixed &b ) {
 
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-Fixed const	&Fixed::max(Fixed const &a, Fixed const &b) {
+Fixed const	&Fixed::max( Fixed const &a, Fixed const &b ) {
 
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-Fixed::Fixed(Fixed const &cp) {
+Fixed	&Fixed::min( Fixed &a, Fixed &b ) {
 
-	*this = cp;
+	if (a < b)
+		return (a);
+	return (b);
 }
 
-std::ostream	&operator<<(std::ostream &os, Fixed const &rhs) {
+Fixed const	&Fixed::min( Fixed const &a, Fixed const &b ) {
+
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int			Fixed::getRawBits( void ) const {
+
+	return (this->raw_value_);
+}
+
+void		Fixed::setRawBits( int const raw ) {
+
+	this->raw_value_ = raw;
+}
+
+float		Fixed::toFloat( void ) const {
+
+	return (((float)this->raw_value_) / ((float)(1 << this->fract_bits)));
+}
+
+int 		Fixed::toInt( void ) const {
+
+	return (this->raw_value_ >> this->fract_bits);
+}
+
+std::ostream	&operator<<( std::ostream &os, Fixed const &rhs ) {
 
 	os << rhs.toFloat();
 	return (os);

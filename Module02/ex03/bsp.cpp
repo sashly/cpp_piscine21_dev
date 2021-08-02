@@ -6,13 +6,14 @@
 //var c:Number = 1 - a - b;
 //return 0 <= a && a <= 1 && 0 <= b && b <= 1 && 0 <= c && c <= 1;
 
-bool	bsp( Point const p1, Point const p2, Point const p3, Point const p) {
+bool	bsp( Point const p1, Point const p2, Point const p3, Point const p ) {
 
 	float	denominator;
 	float	a;
 	float	b;
 	float	c;
 
+//	std::cout << p1 << ", " << p2 << ", " << p3 << ", " << p << ";\n";
 	denominator = (p2.gety().toFloat() - p3.gety().toFloat())
 			* (p1.getx().toFloat() - p3.getx().toFloat())
 			+ (p3.getx().toFloat() - p2.getx().toFloat())
@@ -26,5 +27,5 @@ bool	bsp( Point const p1, Point const p2, Point const p3, Point const p) {
 			+ (p1.getx().toFloat() - p3.getx().toFloat())
 			* (p.gety().toFloat() - p3.gety().toFloat())) / denominator;
 	c = 1 - a - b;
-	return ((a >= 0 && a <= 1) && (b >= 0 && b <= 1) && (c >= 0 && c <= 1));
+	return ((a > 0 && a < 1) && (b > 0 && b < 1) && (c > 0 && c < 1));
 }

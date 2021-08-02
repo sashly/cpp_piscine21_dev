@@ -1,65 +1,62 @@
 #include "Fixed.hpp"
-#include <iostream>
 #include <cmath>
 
-Fixed::Fixed() : value_(0) {
+Fixed::Fixed( void ) : raw_value_( 0 ) {
 
 	std::cout << "Default constructor called\n";
 }
 
-Fixed::Fixed(int const i) {
+Fixed::Fixed( int const i ) {
 
 	std::cout << "Int constructor called\n";
-	this->value_ = i << this->fract_bits;
+	this->raw_value_ = (i << this->fract_bits);
 }
 
-Fixed::Fixed(float const f) {
+Fixed::Fixed( float const f ) {
 
 	std::cout << "Float constructor called\n";
-	this->value_ = std::roundf(f * (1 << this->fract_bits));
+	this->raw_value_ = std::roundf(f * (1 << this->fract_bits));
 }
 
-float		Fixed::toFloat( void ) const {
+Fixed::Fixed( Fixed const &src ) {
 
-	return (((float)this->value_) / (1 << this->fract_bits));
+	std::cout << "Copy constructor called\n";
+	*this = src;
 }
 
-int 		Fixed::toInt( void ) const {
-
-	return (this->value_ >> this->fract_bits);
-}
-
-Fixed::~Fixed() {
+Fixed::~Fixed( void ) {
 
 	std::cout << "Destructor called\n";
 }
 
+Fixed	&Fixed::operator=( Fixed const &rhs ) {
+
+	std::cout << "Assignation operator called\n";
+	this->raw_value_ = rhs.getRawBits();
+	return (*this);
+}
+
 int			Fixed::getRawBits( void ) const {
 
-//	std::cout << "getRawBits member function called\n";
-	return (this->value_);
+	return (this->raw_value_);
 }
 
 void		Fixed::setRawBits( int const raw ) {
 
-	std::cout << "setRawBits member function called\n";
-	this->value_ = raw;
+	this->raw_value_ = raw;
 }
 
-Fixed const &Fixed::operator=(Fixed const &rhs) {
+float		Fixed::toFloat( void ) const {
 
-	std::cout << "Assignation operator called\n";
-	this->value_ = rhs.getRawBits();
-	return (*this);
+	return (((float)this->raw_value_) / ((float)(1 << this->fract_bits)));
 }
 
-Fixed::Fixed(Fixed const &cp) {
+int 		Fixed::toInt( void ) const {
 
-	std::cout << "Copy constructor called\n";
-	*this = cp;
+	return (this->raw_value_ >> this->fract_bits);
 }
 
-std::ostream	&operator<<(std::ostream &os, Fixed const &rhs) {
+std::ostream	&operator<<( std::ostream &os, Fixed const &rhs ) {
 
 	os << rhs.toFloat();
 	return (os);

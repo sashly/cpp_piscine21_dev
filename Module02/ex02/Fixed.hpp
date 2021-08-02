@@ -1,52 +1,51 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-#include <iostream>
+# include <iostream>
 
 class Fixed {
 public:
 
-	Fixed();
-	Fixed(int const i);
-	Fixed(float const f);
+	Fixed( void );
+	Fixed( int const i );
+	Fixed( float const f );
+	Fixed( Fixed const &src );
+	~Fixed( void );
 
-	~Fixed();
-	Fixed(Fixed const &cp);
+	Fixed			&operator=( Fixed const &rhs );
 
-	static Fixed	&max(Fixed &a, Fixed &b);
-	static Fixed const	&max(Fixed const &a, Fixed const &b);
+	bool		operator>( Fixed const &rhs ) const;
+	bool		operator<( Fixed const &rhs ) const;
+	bool		operator>=( Fixed const &rhs ) const;
+	bool		operator<=( Fixed const &rhs ) const;
+	bool		operator==( Fixed const &rhs ) const;
+	bool		operator!=( Fixed const &rhs ) const;
 
-	Fixed const &operator=(Fixed const &rhs);
+	Fixed		operator+( Fixed const &rhs ) const;
+	Fixed		operator-( Fixed const &rhs ) const;
+	Fixed		operator*( Fixed const &rhs ) const;
+	Fixed		operator/( Fixed const &rhs ) const;
 
-	bool		operator>(Fixed const &rhs) const;
-	bool		operator<(Fixed const &rhs) const;
-	bool		operator>=(Fixed const &rhs) const;
-	bool		operator<=(Fixed const &rhs) const;
-	bool		operator==(Fixed const &rhs) const;
-	bool		operator!=(Fixed const &rhs) const;
+	Fixed		&operator++( void );
+	Fixed 		operator++( int );
+	Fixed 		&operator--( void );
+	Fixed 		operator--( int );
 
-	Fixed		operator+(Fixed const &rhs) const;
-	Fixed		operator-(Fixed const &rhs) const;
-	Fixed		operator*(Fixed const &rhs) const;
-	Fixed		operator/(Fixed const &rhs) const;
+	static Fixed		&max( Fixed &a, Fixed &b );
+	static Fixed const	&max( Fixed const &a, Fixed const &b );
+	static Fixed		&min( Fixed &a, Fixed &b );
+	static Fixed const	&min( Fixed const &a, Fixed const &b );
 
-	Fixed const	&operator++();
-	Fixed const	operator++(int);
-	Fixed const	&operator--();
-	Fixed const	operator--(int);
-
-	int			getRawBits( void ) const;
-	void		setRawBits( int const raw );
-
-	float		toFloat( void ) const;
-	int 		toInt( void ) const;
+	int					getRawBits( void ) const;
+	void				setRawBits( int const raw );
+	float				toFloat( void ) const;
+	int 				toInt( void ) const;
 
 private:
-
 	static const int	fract_bits = 8;
-	int					value_;
+	int					raw_value_;
 };
 
-std::ostream	&operator<<(std::ostream &os, Fixed const &rhs);
+std::ostream	&operator<<( std::ostream &os, Fixed const &rhs );
 
 #endif
