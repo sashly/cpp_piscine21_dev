@@ -68,5 +68,13 @@ int main( void ) {
 	std::cout << Fixed::max( a1, b1 ) << std::endl;
 
 	std::cout << "\n";
+	std::cout << "x: " << x << ", y: " << y << ", x1: "
+			  << x1 << ", y1: " << y1 << "\n"
+			  << "x = y = x1 = y1;\n";
+	x = y = x1 = y1;
+	std::cout << "x: " << x << ", y: " << y << ", x1: "
+			  << x1 << ", y1: " << y1 << "\n";
+
+	std::cout << "\n";
 	return (0);
 }
