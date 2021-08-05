@@ -5,13 +5,14 @@
 
 int	main( void ) {
 
-	FragTrap	frag("fraaag");
+	FragTrap	frag("FRAAAG");
 
+	std::cout << "\n";
 	frag.attack( "annoying mosquito" );
 	frag.takeDamage( 50 );
 	frag.beRepaired( 20 );
-
 	frag.highFivesGuys();
+	std::cout << "\n";
 
 	return (0);
 }

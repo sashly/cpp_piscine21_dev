@@ -9,11 +9,12 @@ int	main( void ) {
 
 	clap_cp1 = clap;
 
+	std::cout << "\n";
 	clap.attack( "big fly" );
 	clap.takeDamage( 5 );
 	clap.takeDamage( 25 );
-
 	clap.beRepaired( 15 );
+	std::cout << "\n";
 
 	return (0);
 }

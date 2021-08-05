@@ -3,7 +3,7 @@
 
 # include <string>
 
-class	ClapTrap {
+class ClapTrap {
 public:
 
 	ClapTrap( void );

@@ -6,7 +6,7 @@
 #include "FragTrap.hpp"
 #include <string>
 
-class	DiamondTrap : public ScavTrap, public FragTrap {
+class DiamondTrap : private ScavTrap, private FragTrap {
 public:
 
 	DiamondTrap( void );
@@ -21,6 +21,8 @@ public:
 	using ScavTrap::attack;
 	using ScavTrap::guardGate;
 	using FragTrap::highFivesGuys;
+
+	void		debug( void ) const;
 
 private:
 	std::string	Name;

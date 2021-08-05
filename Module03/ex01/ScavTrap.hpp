@@ -3,7 +3,7 @@
 
 # include "ClapTrap.hpp"
 
-class	ScavTrap : public ClapTrap {
+class ScavTrap : public ClapTrap {
 public:
 
 	ScavTrap( void );
@@ -13,6 +13,9 @@ public:
 
 	ScavTrap	&operator=( ScavTrap const &rhs );
 
+	void		attack( std::string const & target );
+	void 		takeDamage( unsigned int amount );
+	void 		beRepaired( unsigned int amount );
 	void		guardGate( void );
 };
 
