@@ -1,8 +1,13 @@
 #include "DiamondTrap.hpp"
 #include <iostream>
 
-DiamondTrap::DiamondTrap( void ) {
+DiamondTrap::DiamondTrap( void ) : ClapTrap(),
+								   ScavTrap(),
+								   FragTrap() {
 	std::cout << "Default DiamondTrap constructor called\n";
+	this->Hitpoints = 100;
+	this->Energy_points = 50;
+	this->Attack_damage = 30;
 }
 
 DiamondTrap::DiamondTrap( std::string const &name ) : ClapTrap( name
