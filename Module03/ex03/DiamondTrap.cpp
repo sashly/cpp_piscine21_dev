@@ -24,6 +24,9 @@ DiamondTrap::DiamondTrap( std::string const &name ) : ClapTrap( name
 DiamondTrap::DiamondTrap( DiamondTrap const &src ) : ClapTrap( src ),
 													 Name( src.Name ) {
 	std::cout << "Copy DiamondTrap constructor called\n";
+	this->Hitpoints = src.Hitpoints;
+	this->Energy_points = src.Energy_points;
+	this->Attack_damage = src.Attack_damage ;
 }
 
 DiamondTrap::~DiamondTrap( void ) {

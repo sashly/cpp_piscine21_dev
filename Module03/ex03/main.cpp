@@ -8,14 +8,17 @@ int	main( void ) {
 
 	DiamondTrap	test( "DIAMOND" );
 //	DiamondTrap	test1( test );
+//	test1.debug();
 //	DiamondTrap	test2;
+//	test2 = test;
+//	test2.debug();
 
 //	std::cout << "\n";
-////	std::cout << sizeof(std::string) << "\n";
-//	std::cout << "sizeof( ClapTrap ): " << sizeof(ClapTrap)
-//			  << "\nsizeof( ScavTrap ): " << sizeof(ScavTrap)
-//			  << "\nsizeof( FragTrap ): " << sizeof(FragTrap)
-//			  << "\nsizeof( DiamondTrap ): " << sizeof(DiamondTrap) << "\n";
+//	std::cout << sizeof( std::string ) << "\n";
+//	std::cout << "sizeof( ClapTrap ): " << sizeof( ClapTrap )
+//			  << "\nsizeof( ScavTrap ): " << sizeof( ScavTrap )
+//			  << "\nsizeof( FragTrap ): " << sizeof( FragTrap )
+//			  << "\nsizeof( DiamondTrap ): " << sizeof( DiamondTrap ) << "\n";
 
 	std::cout << "\n";
 	test.debug();
