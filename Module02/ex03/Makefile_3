@@ -15,20 +15,28 @@ SRCS       =    $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
 OBJS_DIR   =    ./objs_$(UNAME_S)
 DEPS_DIR   =    ./deps_$(UNAME_S)
 OBJS       =    $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
-DEPS       =    $(SRCS:%.cpp=$(DEPS_DIR)/%.d)
+#DEPS       =    $(SRCS:%.cpp=$(DEPS_DIR)/%.d)
+DEPS       =    $(patsubst $(SRCS_DIR)/%.cpp, $(DEPS_DIR)/%.d, $(SRCS))
 
-$(OBJS_DIR)/%.o: %.cpp Makefile
-	@mkdir -p $(@D)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp | $(OBJS_DIR) Makefile
 	$(CPPC) $(CFLAGS) -c $< -o $@
 
-$(DEPS_DIR)/%.d: %.cpp
-	@mkdir -p $(@D)
-	@$(CPPC) $(CFLAGS) -MM $< >> $@
+$(DEPS_DIR)/%.d: $(SRCS_DIR)/%.cpp | $(DEPS_DIR)
+	@$(CPPC) -MM -MG $< | sed 's!^\(.\+\).o:!$(DEPS_DIR)/\1.d $(OBJS_DIR)/\1.o:!' > $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CPPC) $(CFLAGS) -MMD $(OBJS) -o $(NAME) -I$(HEADERS)
+	$(CPPC) $(CFLAGS) $(OBJS) -o $(NAME) -I$(HEADERS)
+
+ifneq "$(MAKECMDGOALS)" "clean"
+ifneq "$(MAKECMDGOALS)" "fclean"
+-include $(DEPS)
+endif
+endif
+
+$(DEPS_DIR) $(OBJS_DIR):
+	@mkdir $@
 
 clean:
 	$(RM) $(OBJS) $(DEPS)
@@ -39,4 +47,4 @@ re:          fclean all
 
 .PHONY:      all clean fclean re
 
--include $(DEPS)
+
