@@ -1,5 +1,5 @@
 
-NAME       =    animals
+NAME       =    brain
 UNAME_S	   =    $(shell uname -s)
 CPPC       =    clang++
 CFLAGS     =    -Wall -Wextra -Werror -std=c++98
@@ -9,9 +9,7 @@ SRCS_DIR   =    .
 SRCS_LIST  =    main.cpp \
 				Animal.cpp \
 				Cat.cpp \
-				Dog.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp
+				Brain.cpp
 
 SRCS       =    $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
 OBJS_DIR   =    ./build_$(UNAME_S)
