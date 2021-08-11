@@ -45,6 +45,15 @@ int	main( void ) {
 			delete arr[i];
 		delete [] arr;
 	}
+	{
+		std::cout << "       --> ANIMAL CLASS INSTANTIATION: <--\n";
+		Animal	an;
+		Animal	*k = new Animal();
+		an.makeSound();
+		k->makeSound();
+		delete k;
+	}
+
 //	sleep(3);
 	return ( 0 );
 }
