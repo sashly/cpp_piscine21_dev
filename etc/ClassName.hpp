@@ -6,7 +6,6 @@ public:
 	ClassName( void );
 	ClassName( ClassName const &src );
 	~ClassName( void );
-
 	ClassName	&operator=( ClassName const &rhs );
 
 protected:

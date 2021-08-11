@@ -1,5 +1,5 @@
 
-NAME       =    name
+NAME       =    interface
 UNAME_S	   =    $(shell uname -s)
 CPPC       =    clang++
 CFLAGS     =    -Wall -Wextra -Werror -std=c++98
@@ -7,7 +7,11 @@ RM         =    rm -f
 HEADERS	   =    .
 SRCS_DIR   =    .
 SRCS_LIST  =    main.cpp \
-				...
+				AMateria.cpp \
+				Ice.cpp \
+				Cure.cpp \
+				Character.cpp \
+				MateriaSource.cpp
 
 SRCS       =    $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
 OBJS_DIR   =    ./build_$(UNAME_S)
