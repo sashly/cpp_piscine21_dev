@@ -58,6 +58,11 @@ std::string const	&Character::getName( void ) const {
 
 void	Character::equip( AMateria* m ) {
 
+	if (!m)
+		return ;
+	for (int i = 0; i < this->inventory_size; i++)
+		if (this->inventory[i] == m)
+			return ;
 	for (int i = 0; i < this->inventory_size; i++) {
 		if (this->inventory_equip[i] == false) {
 			if (this->inventory[i])
@@ -77,6 +82,7 @@ void	Character::unequip( int idx ) {
 
 void	Character::use( int idx, ICharacter& target ) {
 
-	if ((idx >= 0 && idx < 4) && this->inventory_equip[idx] == true)
+	if ((idx >= 0 && idx < this->inventory_size)
+			&& this->inventory_equip[idx] == true)
 		this->inventory[idx]->use( target );
 }

@@ -8,7 +8,6 @@ public:
 	WrongAnimal( void );
 	WrongAnimal( WrongAnimal const &src );
 	~WrongAnimal( void );
-
 	WrongAnimal	&operator=( WrongAnimal const &rhs );
 
 	void				makeSound( void ) const;

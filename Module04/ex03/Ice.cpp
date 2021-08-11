@@ -9,9 +9,7 @@ Ice::~Ice( void ) {}
 
 Ice	&Ice::operator=( Ice const &rhs ) {
 
-	if (this != &rhs) {
-		this->AMateria::operator=( rhs );
-	}
+	this->AMateria::operator=( rhs );
 	return (*this);
 }
 

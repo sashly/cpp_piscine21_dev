@@ -19,40 +19,50 @@ int	main( void ) {
 		delete cat;
 		copy_cat.printIdeas();
 		assign_cat.printIdeas();
-	}
-	{
-		std::cout << "       --> LEAKS TESTS: <--\n";
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
-		delete j;//should not create a leak
-		delete i;
-	}
-	{
-		std::cout << "       --> MAIN TESTS: <--\n";
-		int const	arr_size = 8;
-		Animal		**arr = new Animal*[arr_size];
-//		Animal		*arr[arr_size];
 
-		for (int i = 0; i < arr_size; i++) {
-			if (i % 2)
-				arr[i] = new Cat();
-			else
-				arr[i] = new Dog();
+		Dog	basic;
+		basic.setIdea( "one" );
+		basic.setIdea( "two" );
+		basic.setIdea( "three" );
+		basic.printIdeas();
+		{
+			Dog tmp = basic;
 		}
-		for (int i = 0; i < arr_size; i++)
-			arr[i]->makeSound();
-		for (int i = 0; i < arr_size; i++)
-			delete arr[i];
-		delete [] arr;
+		basic.printIdeas();
 	}
-	{
-		std::cout << "       --> ANIMAL CLASS INSTANTIATION: <--\n";
-		Animal	an;
-		Animal	*k = new Animal();
-		an.makeSound();
-		k->makeSound();
-		delete k;
-	}
+//	{
+//		std::cout << "\n       --> LEAKS TESTS: <--\n";
+//		const Animal* j = new Dog();
+//		const Animal* i = new Cat();
+//		delete j;//should not create a leak
+//		delete i;
+//	}
+//	{
+//		std::cout << "\n       --> MAIN TESTS: <--\n";
+//		int const	arr_size = 8;
+//		Animal		**arr = new Animal*[arr_size];
+////		Animal		*arr[arr_size];
+//
+//		for (int i = 0; i < arr_size; i++) {
+//			if (i % 2)
+//				arr[i] = new Cat();
+//			else
+//				arr[i] = new Dog();
+//		}
+//		for (int i = 0; i < arr_size; i++)
+//			arr[i]->makeSound();
+//		for (int i = 0; i < arr_size; i++)
+//			delete arr[i];
+//		delete [] arr;
+//	}
+//	{
+//		std::cout << "       --> ANIMAL CLASS INSTANTIATION: <--\n";
+//		Animal	an;
+//		Animal	*k = new Animal();
+//		an.makeSound();
+//		k->makeSound();
+//		delete k;
+//	}
 
 //	sleep(3);
 	return ( 0 );

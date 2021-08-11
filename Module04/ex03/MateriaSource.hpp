@@ -16,6 +16,8 @@ public:
 private:
 	static int const	storage_size = 4;
 	AMateria			*storage[storage_size];
+	int 				count;
+	bool				dub[storage_size];
 };
 
 #endif
