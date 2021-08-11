@@ -14,6 +14,9 @@ public:
 	Cat	&operator=( Cat const &rhs );
 
 	virtual	void	makeSound( void ) const;
+
+	void		setIdea( std::string const &idea );
+	void		printIdeas( void ) const;
 private:
 	Brain	*brain;
 	void	deepCopy( Cat const &src );

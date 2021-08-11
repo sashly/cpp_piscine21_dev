@@ -8,9 +8,14 @@ int	main( void ) {
 	Brain	brain;
 	Animal	*j = new Cat( brain );
 
+	Cat		cat;
+	Animal	*k = new Cat( cat );
+
 	i->makeSound();
+	k->makeSound();
 
 	delete i;
 	delete j;
+	delete k;
 	return ( 0 );
 }
