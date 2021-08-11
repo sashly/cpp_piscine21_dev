@@ -8,7 +8,6 @@ public:
 	Animal( void );
 	Animal( Animal const &src );
 	virtual	~Animal( void );
-
 	Animal	&operator=( Animal const &rhs );
 
 	virtual	void		makeSound( void ) const;

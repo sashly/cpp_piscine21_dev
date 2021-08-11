@@ -9,12 +9,14 @@ public:
 	Dog( void );
 	Dog( Dog const &src );
 	virtual	~Dog( void );
-
 	Dog	&operator=( Dog const &rhs );
 
 	virtual	void	makeSound( void ) const;
+
+	void			setIdea( std::string const &idea );
+	void			printIdeas( void ) const;
 private:
-	Brain	*brain;
+	Brain			*brain;
 };
 
 #endif

@@ -9,6 +9,7 @@ SRCS_DIR   =    .
 SRCS_LIST  =    main.cpp \
 				Animal.cpp \
 				Cat.cpp \
+				Dog.cpp \
 				Brain.cpp
 
 SRCS       =    $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))

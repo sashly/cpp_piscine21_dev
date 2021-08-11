@@ -1,20 +1,24 @@
 #include "Brain.hpp"
 #include <iostream>
 
-Brain::Brain( void ) : index( 0 ) {}
+Brain::Brain( void ) : index( 0 ) {
+
+	std::cout << "------> Default Brain constructor called\n";
+}
 
 Brain::Brain( Brain const &src ) {
 
+	std::cout << "------> Brain Copy constructor called\n";
 	*this = src;
 }
 
-Brain::~Brain( void ) {}
+Brain::~Brain( void ) { std::cout << "------> Brain destructor called\n"; }
 
 Brain	&Brain::operator=( Brain const &rhs ) {
 
-	if ( this != &rhs ) {
+	if (this != &rhs) {
 		this->index = rhs.index;
-		for ( int i = 0; i < this->index; i++ )
+		for (int i = 0; i < this->index; i++)
 			this->ideas[i] = rhs.ideas[i];
 	}
 	return ( *this );
@@ -22,14 +26,14 @@ Brain	&Brain::operator=( Brain const &rhs ) {
 
 std::string	Brain::getIdea( int index ) const {
 
-	if ( index > this->index || index < 0 )
+	if (index >= this->index || index < 0)
 		return ( "" );
 	return ( this->ideas[index] );
 }
 
 void	Brain::setIdea( std::string const &idea ) {
 
-	if ( this->index < this->ideas_size ) {
+	if (this->index < this->ideas_size) {
 		this->ideas[this->index] = idea;
 		this->index++;
 	}

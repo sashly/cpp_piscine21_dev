@@ -8,7 +8,6 @@ public:
 	Brain( void );
 	Brain( Brain const &src );
 	~Brain( void );
-
 	Brain	&operator=( Brain const &rhs );
 
 	std::string getIdea( int index ) const;

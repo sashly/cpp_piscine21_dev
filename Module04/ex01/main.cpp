@@ -1,21 +1,50 @@
 #include <iostream>
 #include "Animal.hpp"
 #include "Cat.hpp"
+#include "Dog.hpp"
+#include <unistd.h>
 
 int	main( void ) {
 
-	Animal	*i = new Cat();
-	Brain	brain;
-	Animal	*j = new Cat( brain );
+	{
+		std::cout << "       --> DEEP COPY TESTS: <--\n";
+		Cat	*cat = new Cat();
+		cat->setIdea( "idea_one" );
+		cat->setIdea( "idea_two" );
+		cat->setIdea( "idea_three" );
+		cat->printIdeas();
+		Cat copy_cat( *cat );
+		Cat assign_cat;
+		assign_cat = *cat;
+		delete cat;
+		copy_cat.printIdeas();
+		assign_cat.printIdeas();
+	}
+	{
+		std::cout << "       --> LEAKS TESTS: <--\n";
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
+		delete j;//should not create a leak
+		delete i;
+	}
+	{
+		std::cout << "       --> MAIN TESTS: <--\n";
+		int const	arr_size = 8;
+		Animal		**arr = new Animal*[arr_size];
+//		Animal		*arr[arr_size];
 
-	Cat		cat;
-	Animal	*k = new Cat( cat );
-
-	i->makeSound();
-	k->makeSound();
-
-	delete i;
-	delete j;
-	delete k;
+		for (int i = 0; i < arr_size; i++) {
+			if (i % 2)
+				arr[i] = new Cat();
+			else
+				arr[i] = new Dog();
+		}
+		for (int i = 0; i < arr_size; i++)
+			arr[i]->makeSound();
+		for (int i = 0; i < arr_size; i++)
+			delete arr[i];
+		delete [] arr;
+	}
+//	sleep(3);
 	return ( 0 );
 }
