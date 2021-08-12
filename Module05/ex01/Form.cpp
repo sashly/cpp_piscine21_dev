@@ -18,9 +18,10 @@ Form::Form( std::string const &name,
 		throw ( Form::GradeTooHighException() );
 }
 
-Form::Form( Form const &src ) : name( src.name ), is_signed( src.is_signed ),
-								grade_to_sign( src.grade_to_sign ),
-								grade_to_exec( src.grade_to_exec ) {}
+Form::Form( Form const &src ) : name( src.getName() ),
+								is_signed( src.getIsSigned() ),
+								grade_to_sign( src.getGradeSign() ),
+								grade_to_exec( src.getGradeExec() ) {}
 
 Form::~Form( void ) {}
 
