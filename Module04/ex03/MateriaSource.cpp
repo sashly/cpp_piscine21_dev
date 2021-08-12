@@ -14,10 +14,10 @@ MateriaSource::MateriaSource( MateriaSource const &src ) {
 	this->count = src.count;
 	for (int i = 0; i < src.storage_size; i++) {
 		if (src.storage[i])
-			this->storage[i] = src.storage[i]->clone();
+			this->storage[i] = src.storage[i];
 		else
 			this->storage[i] = 0;
-		this->dub[i] = src.dub[i];
+		this->dub[i] = (this->storage[i]);
 	}
 }
 
@@ -34,13 +34,13 @@ MateriaSource	&MateriaSource::operator=( MateriaSource const &rhs ) {
 	if (this != &rhs) {
 		this->count = rhs.count;
 		for (int i = 0; i < rhs.storage_size; i++) {
-			if (this->storage[i])
+			if (this->storage[i] && this->dub[i] == false)
 				delete this->storage[i];
 			if (rhs.storage[i])
-				this->storage[i] = rhs.storage[i]->clone();
+				this->storage[i] = rhs.storage[i];
 			else
 				this->storage[i] = 0;
-			this->dub[i] = rhs.dub[i];
+			this->dub[i] = (this->storage[i]);
 		}
 	}
 	return (*this);
@@ -51,7 +51,7 @@ void	MateriaSource::learnMateria( AMateria *m ) {
 	bool	dub_flag;
 
 	dub_flag = false;
-	if (this->count == 4 || !m)
+	if (!m || this->count == 4)
 		return ;
 	for (int i = 0; i < this->storage_size; i++)
 		if (this->storage[i] == m)
@@ -59,8 +59,8 @@ void	MateriaSource::learnMateria( AMateria *m ) {
 	for (int i = 0; i < this->storage_size; i++) {
 		if (this->storage[i] == 0) {
 			this->storage[i] = m;
-			this->count++;
 			this->dub[i] = dub_flag;
+			this->count++;
 			break ;
 		}
 	}

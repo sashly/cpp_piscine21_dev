@@ -7,7 +7,6 @@
 
 class Character : public ICharacter {
 public:
-	Character( void );
 	Character( std::string const &name );
 	Character( Character const &src );
 	virtual ~Character( void );
@@ -17,13 +16,12 @@ public:
 	virtual void				equip( AMateria* m );
 	virtual void				unequip( int idx );
 	virtual void				use( int idx, ICharacter& target );
-
 private:
-	std::string			name;
+	Character( void );
 
+	std::string			name;
 	static int const	inventory_size = 4;
 	AMateria			*inventory[inventory_size];
-	bool 				inventory_equip[inventory_size];
 };
 
 #endif
