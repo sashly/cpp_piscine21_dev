@@ -102,6 +102,7 @@ int	main( void ) {
 		Bureaucrat	tom( "Tom", 25 );
 		PresidentialPardonForm	form1( "target1" );
 		RobotomyRequestForm		form2( "target2" );
+		ShrubberyCreationForm	form3( "Bob" );
 
 		std::cout << form1 << "\n";
 		std::cout << form2 << "\n";
@@ -110,6 +111,9 @@ int	main( void ) {
 		bob.signForm( form2 );
 		tom.signForm( form1 );
 		tom.executeForm( form1 );
+		tom.executeForm( form2 );
+		tom.signForm( form3 );
+		tom.executeForm( form3 );
 	}
 	catch ( std::exception &e ) {
 		std::cout << e.what() << "\n";
