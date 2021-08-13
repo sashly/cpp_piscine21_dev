@@ -11,6 +11,9 @@ public:
 	virtual ~MateriaSource( void );
 	MateriaSource	&operator=( MateriaSource const &rhs );
 
+	int 				getCount( void ) const;
+	AMateria			*getStorage( int index ) const;
+	bool 				getDub( int index ) const;
 	virtual void		learnMateria( AMateria* );
 	virtual AMateria*	createMateria( std::string const & type );
 private:

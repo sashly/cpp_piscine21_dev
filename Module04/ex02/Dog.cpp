@@ -8,9 +8,10 @@ Dog::Dog( void ) : Animal() {
 	this->brain = new Brain();
 }
 
-Dog::Dog( Dog const &src ) : Animal( src ) {
+Dog::Dog( Dog const &src ) {
 
 	std::cout << "------> Dog Copy constructor called\n";
+	this->type = src.getType();
 	if (src.brain)
 		this->brain = new Brain( *(src.brain) );
 	else
@@ -26,7 +27,7 @@ Dog::~Dog( void ) {
 Dog	&Dog::operator=( Dog const &rhs ) {
 
 	if (this != &rhs) {
-		this->Animal::operator=( rhs );
+		this->type = rhs.getType();
 		delete this->brain;
 		if (rhs.brain)
 			this->brain = new Brain( *(rhs.brain) );

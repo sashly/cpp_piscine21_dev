@@ -3,14 +3,14 @@
 
 WrongAnimal::WrongAnimal( void ) {}
 
-WrongAnimal::WrongAnimal( WrongAnimal const &src ) : type( src.type ) {}
+WrongAnimal::WrongAnimal( WrongAnimal const &src ) : type( src.getType() ) {}
 
 WrongAnimal::~WrongAnimal( void ) {}
 
 WrongAnimal	&WrongAnimal::operator=( WrongAnimal const &rhs ) {
 
 	if (this != &rhs) {
-		this->type = rhs.type;
+		this->type = rhs.getType();
 	}
 	return (*this);
 }

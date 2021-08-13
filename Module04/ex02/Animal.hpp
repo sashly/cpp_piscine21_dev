@@ -11,10 +11,10 @@ public:
 	virtual	void		makeSound( void ) const = 0;
 	std::string const	&getType( void ) const;
 protected:
+	std::string	type;
+private:
 	Animal( Animal const &src );
 	Animal	&operator=( Animal const &rhs );
-
-	std::string	type;
 };
 
 #endif

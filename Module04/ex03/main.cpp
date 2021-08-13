@@ -4,6 +4,7 @@
 #include "Cure.hpp"
 #include "Character.hpp"
 #include "MateriaSource.hpp"
+#include <unistd.h>
 
 int	main( void ) {
 
@@ -101,9 +102,10 @@ int	main( void ) {
 
 		AMateria	*tmp1;
 		tmp1 = src1.createMateria( "cure" );
-		std::cout << tmp1->getType() << "\n";
-		delete tmp1;
-
+		if ( tmp1 ) {
+			std::cout << tmp1->getType() << "\n";
+			delete tmp1;
+		}
 		delete src;
 	}
 	{
@@ -130,5 +132,6 @@ int	main( void ) {
 		delete src;
 	}
 
+//	sleep( 5 );
 	return ( 0 );
 }

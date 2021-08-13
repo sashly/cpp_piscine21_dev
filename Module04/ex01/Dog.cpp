@@ -1,4 +1,4 @@
-A#include "Dog.hpp"
+#include "Dog.hpp"
 #include <iostream>
 
 Dog::Dog( void ) : Animal() {

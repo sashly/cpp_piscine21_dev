@@ -10,7 +10,7 @@ Ice::~Ice( void ) {}
 Ice	&Ice::operator=( Ice const &rhs ) {
 
 	this->AMateria::operator=( rhs );
-	return (*this);
+	return ( *this );
 }
 
 AMateria* 	Ice::clone( void ) const {

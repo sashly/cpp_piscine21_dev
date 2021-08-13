@@ -11,6 +11,7 @@ public:
 	Brain	&operator=( Brain const &rhs );
 
 	std::string getIdea( int index ) const;
+	int 		getIndex( void ) const;
 	void		setIdea( std::string const &idea );
 	void		printIdeas( void ) const;
 private:

@@ -13,11 +13,11 @@ Character::Character( std::string const &n ) : name( n ) {
 		this->inventory[i] = 0;
 }
 
-Character::Character( Character const &src ) : name( src.name ) {
+Character::Character( Character const &src ) : name( src.getName() ) {
 
 	for (int i = 0; i < src.inventory_size; i++) {
-		if (src.inventory[i])
-			this->inventory[i] = src.inventory[i]->clone();
+		if (src.getInventory( i ))
+			this->inventory[i] = src.getInventory( i )->clone();
 		else
 			this->inventory[i] = 0;
 	}
@@ -33,12 +33,12 @@ Character::~Character( void ) {
 Character	&Character::operator=( Character const &rhs ) {
 
 	if (this != &rhs) {
-		this->name = rhs.name;
+		this->name = rhs.getName();
 		for (int i = 0; i < rhs.inventory_size; i++) {
 			if (this->inventory[i])
 				delete this->inventory[i];
-			if (rhs.inventory[i])
-				this->inventory[i] = rhs.inventory[i]->clone();
+			if (rhs.getInventory( i ))
+				this->inventory[i] = rhs.getInventory( i )->clone();
 			else
 				this->inventory[i] = 0;
 		}
@@ -50,6 +50,12 @@ std::string const	&Character::getName( void ) const {
 
 	return ( this->name );
 }
+
+AMateria const	*Character::getInventory( int index ) const {
+
+	return ( this->inventory[index] );
+}
+
 
 void	Character::equip( AMateria* m ) {
 

@@ -11,10 +11,10 @@ MateriaSource::MateriaSource( void ) {
 
 MateriaSource::MateriaSource( MateriaSource const &src ) {
 
-	this->count = src.count;
+	this->count = src.getCount();
 	for (int i = 0; i < src.storage_size; i++) {
-		if (src.storage[i])
-			this->storage[i] = src.storage[i];
+		if (src.getStorage( i ))
+			this->storage[i] = src.getStorage( i );
 		else
 			this->storage[i] = 0;
 		this->dub[i] = (this->storage[i]);
@@ -36,14 +36,29 @@ MateriaSource	&MateriaSource::operator=( MateriaSource const &rhs ) {
 		for (int i = 0; i < rhs.storage_size; i++) {
 			if (this->storage[i] && this->dub[i] == false)
 				delete this->storage[i];
-			if (rhs.storage[i])
-				this->storage[i] = rhs.storage[i];
+			if (rhs.getStorage( i ))
+				this->storage[i] = rhs.getStorage( i );
 			else
 				this->storage[i] = 0;
 			this->dub[i] = (this->storage[i]);
 		}
 	}
-	return (*this);
+	return ( *this );
+}
+
+int	MateriaSource::getCount( void ) const {
+
+	return ( this->count );
+}
+
+AMateria	*MateriaSource::getStorage( int index ) const {
+
+	return ( this->storage[index] );
+}
+
+bool	MateriaSource::getDub( int index ) const {
+
+	return ( this->dub[index] );
 }
 
 void	MateriaSource::learnMateria( AMateria *m ) {
