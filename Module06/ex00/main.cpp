@@ -1,9 +1,13 @@
 #include <iostream>
+#include <limits.h>
 
+int	main( int argc, char **argv ) {
 
-int	main( void ) {
+	if (argc == 2) {
 
-	int a;
-
+	}
+	else
+		std::cout << "Usage: ./convert <literal "
+					 "(char, int, float or double)>;\n";
 	return ( 0 );
 }
