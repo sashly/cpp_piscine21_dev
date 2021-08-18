@@ -8,17 +8,28 @@ public:
 	ScalarConverter( std::string const arg );
 	~ScalarConverter( void );
 
+	void	convert( void ) const;
+	void	debug( void ) const;
+
 private:
+	typedef enum { INV, CHAR, INT, FLOAT, DOUBLE } e_type;
+
 	ScalarConverter( void );
 	ScalarConverter( ScalarConverter const &src );
 	ScalarConverter	&operator=( ScalarConverter const &rhs );
 
+	void 		char_input( char c );
+	static bool	is_spec_double( double val );
+	void		is_input_valid( void );
+
+	void	convert_char( void ) const;
+	void	convert_int( void ) const;
+	void	convert_float( void ) const;
+	void	convert_double( void ) const;
+
 	double	raw_val_;
-	bool	is_char;
-	bool	is_float;
-	bool 	is_pinf;
-	bool 	is_ninf;
-	bool 	is_nan;
+	e_type	type_;
+	bool 	is_spec_float_;
 };
 
 #endif
