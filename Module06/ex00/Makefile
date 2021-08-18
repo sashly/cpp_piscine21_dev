@@ -2,7 +2,7 @@
 NAME       =    convert
 UNAME_S	   =    $(shell uname -s)
 CPPC       =    clang++
-CFLAGS     =    -Wall -Wextra -Werror
+CFLAGS     =    -Wall -Wextra -Werror -std=c++98
 RM         =    rm -f
 HEADERS	   =    .
 SRCS_DIR   =    .

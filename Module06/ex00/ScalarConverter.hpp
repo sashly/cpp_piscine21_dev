@@ -18,8 +18,9 @@ private:
 	ScalarConverter( ScalarConverter const &src );
 	ScalarConverter	&operator=( ScalarConverter const &rhs );
 
-	void 		char_input( char c );
 	static bool	is_spec_double( double val );
+	static bool is_valid_float( double val );
+	void 		char_input( char c );
 	void		is_input_valid( void );
 
 	void	convert_char( void ) const;

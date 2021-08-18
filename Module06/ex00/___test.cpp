@@ -25,23 +25,23 @@ int	main( void ) {
 //	std::cout << std::numeric_limits<int>::max() << "\n";
 //	std::cout << std::numeric_limits<int>::min() << "\n";
 //
-//	std::cout << GREEN <<"\n\t--> FLOAT: <--" << RESET << "\n";
-//	std::cout << std::numeric_limits<float>::max() << "\n";
-//	std::cout << std::numeric_limits<float>::min() << "\n";
-//	std::cout << std::numeric_limits<float>::epsilon() << "\n";
-//	std::cout << std::numeric_limits<float>::infinity() << "\n";
-//	std::cout << std::numeric_limits<float>::infinity() * ( -1 ) << "\n";
-//	std::cout << std::numeric_limits<float>::quiet_NaN() << "\n";
-//	std::cout << std::numeric_limits<float>::signaling_NaN() << "\n";
-//
-//	std::cout << GREEN <<"\n\t--> DOUBLE: <--" << RESET << "\n";
-//	std::cout << std::numeric_limits<double>::max() << "\n";
-//	std::cout << std::numeric_limits<double>::min() << "\n";
-//	std::cout << std::numeric_limits<double>::epsilon() << "\n";
-//	std::cout << std::numeric_limits<double>::infinity() << "\n";
-//	std::cout << std::numeric_limits<double>::infinity() * ( -1 ) << "\n";
-//	std::cout << std::numeric_limits<double>::quiet_NaN() << "\n";
-//	std::cout << std::numeric_limits<double>::signaling_NaN() << "\n";
+	std::cout << GREEN <<"\n\t--> FLOAT: <--" << RESET << "\n";
+	std::cout << std::numeric_limits<float>::max() << "\n";
+	std::cout << std::numeric_limits<float>::min() << "\n";
+	std::cout << std::numeric_limits<float>::epsilon() << "\n";
+	std::cout << std::numeric_limits<float>::infinity() << "\n";
+	std::cout << std::numeric_limits<float>::infinity() * ( -1 ) << "\n";
+	std::cout << std::numeric_limits<float>::quiet_NaN() << "\n";
+	std::cout << std::numeric_limits<float>::signaling_NaN() << "\n";
+
+	std::cout << GREEN <<"\n\t--> DOUBLE: <--" << RESET << "\n";
+	std::cout << std::numeric_limits<double>::max() << "\n";
+	std::cout << std::numeric_limits<double>::min() << "\n";
+	std::cout << std::numeric_limits<double>::epsilon() << "\n";
+	std::cout << std::numeric_limits<double>::infinity() << "\n";
+	std::cout << std::numeric_limits<double>::infinity() * ( -1 ) << "\n";
+	std::cout << std::numeric_limits<double>::quiet_NaN() << "\n";
+	std::cout << std::numeric_limits<double>::signaling_NaN() << "\n";
 
 	std::cout << GREEN <<"\n\t--> STRTOD TESTS: <--" << RESET << "\n";
 
@@ -65,6 +65,9 @@ int	main( void ) {
 	return ( 0 );
 }
 
+#define	FLT_LOW	-3.40282e+38F
+#define	DBL_LOW	-1.7976931348623157E+308
+
 //	3.14159
 //	3.14159E0
 //	0.
@@ -72,14 +75,15 @@ int	main( void ) {
 //	.0
 //	.0001
 //	0e0
+
+//	2.22507e-308
 //	1.7976931348623157E+308
 //	-1.7976931348623157E+308
-
-//max: 3.40282e+038 min: 1.17549e-038
-
 //-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 Double lowest
 //179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 Double max
 
+//max: 3.40282e+038 min: 1.17549e-038
 //-340282346638528859811704183484516925440.0000000000000000 Float lowest
+//	-3.40282e+38f
 //340282346638528859811704183484516925440.0000000000000000 Float max
 

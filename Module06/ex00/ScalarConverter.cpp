@@ -1,13 +1,13 @@
 #include "ScalarConverter.hpp"
 #include <iostream>
-#include <iomanip>
+#include <sstream>
 #include <cstdlib>
 #include <cctype>
 #include <climits>
 #include <cfloat>
 #include <limits>
-#include <cerrno>
 #include <cmath>
+#include <cerrno>
 
 ScalarConverter::ScalarConverter( void ) {}
 
@@ -78,14 +78,22 @@ bool	ScalarConverter::is_spec_double( double val ) {
 	return ( false );
 }
 
+bool	ScalarConverter::is_valid_float( double in ) {
+
+	if (in < std::numeric_limits<float>::lowest()
+		|| in > std::numeric_limits<float>::max()
+		|| (std::abs( in ) < std::numeric_limits<float>::min() && in != 0.))
+		return ( false );
+	return ( true );
+}
+
 void	ScalarConverter::is_input_valid( void ) {
 
 	if (this->type_ == INT && (this->raw_val_ < static_cast<double>( INT_MIN )
 			|| this->raw_val_ > static_cast<double>( INT_MAX )))
 		this->type_ = INV;
 	else if (this->type_ == FLOAT && !this->is_spec_float_
-		&& (this->raw_val_ < std::numeric_limits<float>::lowest()
-			|| this->raw_val_ > std::numeric_limits<float>::max()))
+		&& !ScalarConverter::is_valid_float( this->raw_val_ ))
 		this->type_ = INV;
 }
 
@@ -95,8 +103,8 @@ void	ScalarConverter::convert_char( void ) const {
 
 	std::cout << "char: ";
 	if (this->type_ == INV || this->is_spec_float_
-			|| c < std::numeric_limits<char>::min()
-			|| c > std::numeric_limits<char>::max())
+		|| this->raw_val_ < static_cast<double>( CHAR_MIN )
+		|| this->raw_val_ > static_cast<double>( CHAR_MAX ))
 		std::cout << "impossible";
 	else if (!std::isprint( c ))
 		std::cout << "Non displayable";
@@ -119,39 +127,48 @@ void	ScalarConverter::convert_int( void ) const {
 	std::cout << "\n";
 }
 
-template<typename T>
-bool	is_float_without_frac( T in ) {
-
-	T	frac = in - static_cast<T>( static_cast<int>( in ) );
-	if (std::abs( frac ) < std::numeric_limits<T>::epsilon())
-		return ( true );
-	return ( false );
-}
-
 void	ScalarConverter::convert_float( void ) const {
 
 	float	f = static_cast<float>( this->raw_val_ );
+	std::ostringstream	oss;
+	std::string 		buf;
 
 	std::cout << "float: ";
 	if (this->type_ == INV || (!this->is_spec_float_
-	&& (f < std::numeric_limits<float>::lowest()
-		|| f > std::numeric_limits<float>::max())))
+			&& !ScalarConverter::is_valid_float( this->raw_val_ )))
 		std::cout << "impossible";
 	else if (this->is_spec_float_)
 		std::cout << this->raw_val_ << "f";
-	else
-		std::cout << f << ((is_float_without_frac<float>( f )) ? ".0f" : "f");
+	else {
+		oss << f;
+		buf = oss.str();
+		if (buf.find( '.' ) == std::string::npos
+		&& buf.find( 'e' ) == std::string::npos)
+			buf += ".0";
+		buf += "f";
+		std::cout << buf;
+	}
 	std::cout << "\n";
 }
 
 void	ScalarConverter::convert_double( void ) const {
 
+	std::ostringstream	oss;
+	std::string 		buf;
+
 	std::cout << "double: ";
 	if (this->type_ == INV)
 		std::cout << "impossible";
-	else
-		std::cout << this->raw_val_
-			<< ((is_float_without_frac<double>( this->raw_val_ )) ? ".0" : "");
+	else if (this->is_spec_float_)
+		std::cout << this->raw_val_;
+	else {
+		oss << this->raw_val_;
+		buf = oss.str();
+		if (buf.find( '.' ) == std::string::npos
+				&& buf.find( 'e' ) == std::string::npos)
+			buf += ".0";
+		std::cout << buf;
+	}
 	std::cout << "\n";
 }
 
