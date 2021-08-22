@@ -11,6 +11,15 @@
 #define CYAN    	"\033[36m"
 #define WHITE   	"\033[37m"
 
+class Test {
+public:
+	Test( int id = 0 ) : id_( id ) {}
+	Test( Test const &src ) : id_( src.getId() ) {}
+	int 	getId( void ) const { return ( this->id_ ); }
+private:
+	int	id_;
+};
+
 int	main( void ) {
 
 	std::cout << GREEN <<"\t--> SWAP TESTS: <--" << RESET << "\n";
@@ -34,8 +43,12 @@ int	main( void ) {
 	std::cout << "String:\tbefore swap --> a: " << s1 << ", b: " << s2 << "\n";
 	swap<std::string>( &s1, &s2 );
 	std::cout << "       \t after swap --> a: " << s1 << ", b: " << s2 << "\n";
-
-
+	Test	cl1( 11 ), cl2( 3 );
+	std::cout << "Class:\tbefore swap --> a: " << cl1.getId()
+			  << ", b: " << cl2.getId() << "\n";
+	swap<Test>( &cl1, &cl2 );
+	std::cout << "       \t after swap --> a: " << cl1.getId()
+			  << ", b: " << cl2.getId() << "\n";
 
 	std::cout << GREEN <<"\t--> MIN TESTS: <--" << RESET << "\n";
 	std::cout << GREEN <<"\t--> MAX TESTS: <--" << RESET << "\n";
