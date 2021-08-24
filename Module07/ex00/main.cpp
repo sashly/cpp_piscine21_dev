@@ -11,46 +11,89 @@
 #define CYAN    	"\033[36m"
 #define WHITE   	"\033[37m"
 
-class Test {
+class Awesome {
 public:
-	Test( int id = 0 ) : id_( id ) {}
-	Test( Test const &src ) : id_( src.getId() ) {}
-	int 	getId( void ) const { return ( this->id_ ); }
+	Awesome( int n ) : _n( n ) {}
+	bool operator==( Awesome const & rhs ) const {
+		return (this->_n == rhs._n); }
+	bool operator!=( Awesome const & rhs ) const{
+		return (this->_n != rhs._n); }
+	bool operator>( Awesome const & rhs ) const {
+		return (this->_n > rhs._n); }
+	bool operator<( Awesome const & rhs ) const {
+		return (this->_n < rhs._n); }
+	bool operator>=( Awesome const & rhs ) const {
+		return (this->_n >= rhs._n); }
+	bool operator<=( Awesome const & rhs ) const {
+		return (this->_n <= rhs._n); }
+	int		getN( void ) const { return ( this->_n ); }
 private:
-	int	id_;
+	int _n;
 };
 
+std::ostream	&operator<<( std::ostream &os, Awesome const &a ) {
+	return ( os << a.getN() );
+}
+
+template<typename T>
+void	swap_test( T a, T b, char const *name ) {
+	T at( a ), bt( b );
+	std::cout << MAGENTA << name << ":" << RESET << "\tbefore swap --> a: "
+			  << at << ", b: " << bt << "\n";
+	swap( at, bt );
+	std::cout << "    \t after swap --> a: " << at << ", b: " << bt << "\n";
+}
+
+template<typename T>
+void min_max_test( T a, T b, char const *name ) {
+	T	at( a ), bt( b );
+	std::cout << MAGENTA << name << ":" << RESET << "\ta: " << at
+			  << " {" << (void *)&at << "}, b:" << bt << " {"
+			  << (void *)&bt << "};\n";
+	T const	&min = ::min( at, bt );
+	std::cout << "\tmin( a, b ): " << min << " {" << (void *)&min << "};\n";
+	T const	&max = ::max( at, bt );
+	std::cout << "\tmax( a, b ): " << max << " {" << (void *)&max << "};\n";
+}
+
 int	main( void ) {
+	{
+		std::cout << GREEN << "\t--> SUBJECT TEST: <--" << RESET << "\n";
+		int a = 2;
+		int b = 3;
+		::swap( a, b );
+		std::cout << "a = " << a << ", b = " << b << std::endl;
+		std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+		std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+		std::string c = "chaine1";
+		std::string d = "chaine2";
+		::swap(c, d);
+		std::cout << "c = " << c << ", d = " << d << std::endl;
+		std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+		std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+	}
+	{
+		std::cout << "\n";
+		std::cout << GREEN << "\t--> SWAP TESTS: <--" << RESET << "\n";
+		swap_test( 5, -1, "Int" );
+		swap_test( -5.23f, .023f, "Float" );
+		swap_test( '!', '*', "Char" );
+		swap_test( 5.123, -1. / 0., "Double" );
+		swap_test( "hello", "world", "String" );
+		swap_test<Awesome>( 11, 3, "Class" );
+	}
+	{
+		std::cout << "\n";
+		std::cout << GREEN <<"\t--> MIN/MAX TESTS: <--" << RESET << "\n";
+		min_max_test( 5, 3, "Int" );
+		min_max_test( 7, 7, "Int" );
+		min_max_test( 234.124f, -123.1001f, "Float" );
+		min_max_test( 0.012435, 0.01243, "Double" );
+		min_max_test( '0', '1', "Char" );
+		min_max_test<std::string>( "hello2", "hello1", "String" );
+		min_max_test<Awesome>( 123, 432, "Class" );
+	}
 
-	std::cout << GREEN <<"\t--> SWAP TESTS: <--" << RESET << "\n";
-	int i1 = 5, i2 = -1;
-	std::cout << "Int:\tbefore swap --> a: " << i1 << ", b: " << i2 << "\n";
-	swap<int>( &i1, &i2 );
-	std::cout << "    \t after swap --> a: " << i1 << ", b: " << i2 << "\n";
-	float f1 = -5.23f, f2 = .023f;
-	std::cout << "Float:\tbefore swap --> a: " << f1 << ", b: " << f2 << "\n";
-	swap<float>( &f1, &f2 );
-	std::cout << "      \t after swap --> a: " << f1 << ", b: " << f2 << "\n";
-	char	c1 = '!', c2 = '*';
-	std::cout << "Char:\tbefore swap --> a: " << c1 << ", b: " << c2 << "\n";
-	swap<char>( &c1, &c2 );
-	std::cout << "     \t after swap --> a: " << c1 << ", b: " << c2 << "\n";
-	double d1 = 5.123, d2 = -1. / 0.;
-	std::cout << "Double:\tbefore swap --> a: " << d1 << ", b: " << d2 << "\n";
-	swap<double>( &d1, &d2 );
-	std::cout << "       \t after swap --> a: " << d1 << ", b: " << d2 << "\n";
-	std::string	s1( "hello" ), s2( "world" );
-	std::cout << "String:\tbefore swap --> a: " << s1 << ", b: " << s2 << "\n";
-	swap<std::string>( &s1, &s2 );
-	std::cout << "       \t after swap --> a: " << s1 << ", b: " << s2 << "\n";
-	Test	cl1( 11 ), cl2( 3 );
-	std::cout << "Class:\tbefore swap --> a: " << cl1.getId()
-			  << ", b: " << cl2.getId() << "\n";
-	swap<Test>( &cl1, &cl2 );
-	std::cout << "       \t after swap --> a: " << cl1.getId()
-			  << ", b: " << cl2.getId() << "\n";
-
-	std::cout << GREEN <<"\t--> MIN TESTS: <--" << RESET << "\n";
-	std::cout << GREEN <<"\t--> MAX TESTS: <--" << RESET << "\n";
 	return ( 0 );
 }
+
