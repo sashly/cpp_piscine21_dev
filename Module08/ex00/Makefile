@@ -6,7 +6,7 @@ CFLAGS     =    -Wall -Wextra -Werror -std=c++98
 RM         =    rm -f
 HEADERS	   =    .
 SRCS_DIR   =    .
-SRCS_LIST  =    main.cpp \
+SRCS_LIST  =    main.cpp
 
 SRCS       =    $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
 OBJS_DIR   =    ./build_$(UNAME_S)

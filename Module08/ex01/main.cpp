@@ -1,5 +1,6 @@
 #include "span.hpp"
 #include <iostream>
+#include <exception>
 #include <cstdlib>
 #include <ctime>
 
@@ -39,6 +40,44 @@ int	main( void ) {
 		sp.addNumber(11);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
+	}
+	{
+		std::cout << GREEN <<"\t--> EXCEPTION TEST: <--" << RESET << "\n";
+		try {
+			Span	sp1( 2 );
+			sp1.addNumber( 1 );
+			sp1.addNumber( 2 );
+			sp1.addNumber( 3 );
+		}
+		catch ( std::exception const &e ) {
+			std::cout << "addNumber exception: " << e.what() << "\n";
+		}
+		try {
+			Span				sp1( 10 );
+			std::vector<int>	v( 8, 1 );
+			sp1.addNumber( 1 );
+			sp1.addNumber( 2 );
+			sp1.addNumber( 3 );
+			sp1.addRange( v.begin(), v.end() );
+		}
+		catch ( std::exception const &e ) {
+			std::cout << "addRange exception: " << e.what() << "\n";
+		}
+		try {
+			Span	sp1( 5 );
+			sp1.addNumber( 4 );
+			std::cout << "shortestSpan: " << sp1.shortestSpan() << "\n";
+		}
+		catch ( std::exception const &e ) {
+			std::cout << "shortestSpan exception: " << e.what() << "\n";
+		}
+		try {
+			Span	sp1( 5 );
+			std::cout << "longestSpan: " << sp1.longestSpan() << "\n";
+		}
+		catch ( std::exception const &e ) {
+			std::cout << "longestSpan exception: " << e.what() << "\n";
+		}
 	}
 	{
 		std::cout << GREEN <<"\t--> 10000 numbers TEST: <--" << RESET << "\n";

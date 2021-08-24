@@ -48,13 +48,22 @@ void	easyfind_test( int mod, char const *cont_name ) {
 int	main( void ) {
 	std::srand( std::time( 0 ) );
 
-	easyfind_test<std::vector<int>, 25>( 25, "vector" );
+	easyfind_test<std::vector<int>, 25>( 17, "vector" );
 	std::cout << "\n";
-	easyfind_test<std::list<int>, 25>( 25, "list" );
+	easyfind_test<std::list<int>, 25>( 17, "list" );
 	std::cout << "\n";
-	easyfind_test<std::deque<int>, 25>( 25, "deque" );
+	easyfind_test<std::deque<int>, 25>( 17, "deque" );
 
+
+	std::cout << GREEN <<"\n\t--> const iterator: <--" << RESET << "\n";
+	std::vector<int> v;
+	int val = generate_test_case<std::vector<int>, 25>( v, 17 );
+	std::vector<int> const	vc( v );
+	std::vector<int>::const_iterator
+						it = easyfind<std::vector<int> const>( vc, val );
+	if (it != vc.end())
+		std::cout << "val: " << val <<", const_iterator: " << *it << "\n";
+	else
+		std::cout << "cannot find value " << val << "\n";
 	return ( 0 );
 }
-
-

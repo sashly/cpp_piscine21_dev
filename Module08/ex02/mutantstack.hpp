@@ -6,15 +6,13 @@
 template<class T>
 class MutantStack : public std::stack<T> {
 public:
-	typedef typename std::deque<T>::iterator	iterator;
+	typedef typename std::stack<T>::container_type::iterator	iterator;
 	MutantStack( void );
 	MutantStack( MutantStack const &src );
 	MutantStack	&operator=( MutantStack const &rhs );
 	~MutantStack( void );
 	iterator	begin( void );
 	iterator	end( void );
-private:
-
 };
 
 template<typename T>
@@ -46,4 +44,3 @@ typename MutantStack<T>::iterator	MutantStack<T>::end( void ) {
 }
 
 #endif
-
