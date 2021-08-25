@@ -21,8 +21,8 @@ public:
 	template<class It>
 	void	addRange( It begin, It end ) throw( std::logic_error );
 
-	int		shortestSpan( void ) const throw( std::logic_error );
-	int		longestSpan( void ) const throw( std::logic_error );
+	unsigned int	shortestSpan( void ) const throw( std::logic_error );
+	unsigned int	longestSpan( void ) const throw( std::logic_error );
 private:
 	unsigned int 		N_;
 	unsigned int		count_;

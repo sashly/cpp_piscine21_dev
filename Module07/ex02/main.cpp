@@ -66,45 +66,45 @@ int	main( void ) {
 		}
 		delete [] mirror;
 	}
-	try {
-		std::cout << GREEN << "\n\t--> ACCESS TESTS: <--" << RESET << "\n";
-		Array<int> numbers( MAX_VAL );
-		Array<int> numbers_big( 213123 );
-		//3147483647u
-		try {
-			numbers[-1] = 7;
-		}
-		catch(const std::exception& e) {
-			std::cerr << "access element: ";
-			std::cerr << e.what() << '\n';
-		}
-		try {
-			numbers[MAX_VAL] = 7;
-		}
-		catch(const std::exception& e) {
-			std::cerr << "access element: ";
-			std::cerr << e.what() << '\n';
-		}
-		try {
-			numbers_big[3147483648u] = 7;
-			std::cout << "element with index 2147483648u is: "
-					  << numbers_big[3147483648u] << "\n";
-		}
-		catch(const std::exception& e) {
-			std::cerr << "access element: ";
-			std::cerr << e.what() << '\n';
-		}
-		try {
-			numbers_big[-2147483647] = 7;
-		}
-		catch(const std::exception& e) {
-			std::cerr << "access element: ";
-			std::cerr << e.what() << '\n';
-		}
-	}
-	catch ( std::exception const &e ) {
-		std::cerr << e.what() << "\n";
-	}
+//	try {
+//		std::cout << GREEN << "\n\t--> ACCESS TESTS: <--" << RESET << "\n";
+//		Array<int> numbers( MAX_VAL );
+//		Array<int> numbers_big( 2147483777u );
+//		//3147483647u
+//		try {
+//			numbers[-1] = 7;
+//		}
+//		catch(const std::exception& e) {
+//			std::cerr << "access element: ";
+//			std::cerr << e.what() << '\n';
+//		}
+//		try {
+//			numbers[MAX_VAL] = 7;
+//		}
+//		catch(const std::exception& e) {
+//			std::cerr << "access element: ";
+//			std::cerr << e.what() << '\n';
+//		}
+//		try {
+//			numbers_big[2147483775u] = 7;
+//			std::cout << "element with index 2147483775u is: "
+//					  << numbers_big[2147483775u] << "\n";
+//		}
+//		catch(const std::exception& e) {
+//			std::cerr << "access element: ";
+//			std::cerr << e.what() << '\n';
+//		}
+//		try {
+//			numbers_big[-2147483647] = 7;
+//		}
+//		catch(const std::exception& e) {
+//			std::cerr << "access element: ";
+//			std::cerr << e.what() << '\n';
+//		}
+//	}
+//	catch ( std::exception const &e ) {
+//		std::cerr << e.what() << "\n";
+//	}
 	{
 		std::cout << GREEN << "\n\t--> EMPTY ARRAY TESTS: <--" << RESET << "\n";
 		Array<int> iarr;

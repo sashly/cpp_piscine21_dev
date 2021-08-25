@@ -6,22 +6,24 @@ Span::Span( void ) : N_( 0 ), count_( 0 ) {}
 
 Span::Span( unsigned int const N ) : N_( N ), count_( 0 ) {}
 
-Span::Span( Span const &src ) : N_( src.N_ ), count_( src.count_ ) {
-	for (size_t i = 0; i < src.cont_.size(); i++)
-		this->cont_.push_back( src.cont_[i] );
-}
+Span::Span( Span const &src ) : N_( src.N_ ),
+								count_( src.count_ ),
+								cont_( src.cont_ ),
+								map_( src.map_ ) {}
 
 Span::~Span( void ) {}
 
 Span	&Span::operator=( Span const &rhs ) {
 
 	if (this != &rhs) {
-		if (this->count_)
+		if (this->count_) {
 			this->cont_.clear();
+			this->map_.clear();
+		}
 		this->N_ = rhs.N_;
 		this->count_ = rhs.count_;
-		for (size_t i = 0; i < rhs.cont_.size(); i++)
-			this->cont_.push_back( rhs.cont_[i] );
+		this->cont_ = rhs.cont_;
+		this->map_ = rhs.map_;
 	}
 	return (*this);
 }
@@ -42,23 +44,23 @@ void	Span::addNumber( int const val ) throw( std::logic_error ) {
 	this->map_.insert( val );
 }
 
-int		Span::shortestSpan( void ) const throw( std::logic_error ) {
+unsigned int	Span::shortestSpan( void ) const throw( std::logic_error ) {
 	if (this->count_ < 2)
 		throw ( std::logic_error( "must be at least 2 numbers to find span" ) );
 	int		min = std::numeric_limits<int>::max();
-	std::multiset<int>::iterator it_next = this->map_.begin();
+	std::multiset<int>::const_iterator it_next = this->map_.begin();
 	it_next++;
-	for (std::multiset<int>::iterator it = this->map_.begin(); it_next != this->map_.end(); it++) {
+	for (std::multiset<int>::const_iterator it = this->map_.begin();
+							it_next != this->map_.end(); it++, it_next++) {
 		if (*it_next - *it < min)
 			min = *it_next - *it;
 		if (min == 0)
 			return ( 0 );
-		it_next++;
 	}
 	return ( min );
 }
 
-int		Span::longestSpan( void ) const throw( std::logic_error ) {
+unsigned int	Span::longestSpan( void ) const throw( std::logic_error ) {
 	if (this->count_ < 2)
 		throw ( std::logic_error( "must be at least 2 numbers to find span" ) );
 	std::vector<int>::const_iterator
@@ -67,3 +69,4 @@ int		Span::longestSpan( void ) const throw( std::logic_error ) {
 			max = std::max_element( this->cont_.begin(), this->cont_.end() );
 	return ( *max - *min );
 }
+

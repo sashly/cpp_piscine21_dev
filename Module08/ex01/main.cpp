@@ -80,6 +80,45 @@ int	main( void ) {
 		}
 	}
 	{
+		std::cout << GREEN <<"\t--> SOME TESTS: <--" << RESET << "\n";
+		int arr0[] = { -2147483648, 2147483647 };
+		std::vector<int>	tv0( arr0, arr0 + sizeof( arr0 ) / sizeof( int ) );
+		print_container( tv0.begin(), tv0.end(), "arr0" );
+		Span sp0 = Span( tv0.size() );
+		sp0.addRange( tv0.begin(), tv0.end() );
+		std::cout << MAGENTA << "shortestSpan: "
+		<< sp0.shortestSpan() << RESET << "\n";
+		std::cout << MAGENTA << "longestSpan: "
+		<< sp0.longestSpan() << RESET << "\n";
+		int arr1[] = { 1, 5, 3, 19, 18, 25 };
+		std::vector<int>	tv1( arr1, arr1 + sizeof( arr1 ) / sizeof( int ) );
+		print_container( tv1.begin(), tv1.end(), "arr1" );
+		Span sp1 = Span( tv1.size() );
+		sp1.addRange( tv1.begin(), tv1.end() );
+		std::cout << MAGENTA << "shortestSpan: "
+				  << sp1.shortestSpan() << RESET << "\n";
+		std::cout << MAGENTA << "longestSpan: "
+				  << sp1.longestSpan() << RESET << "\n";
+		int arr2[] = { 30, 5, 20, 9 };
+		std::vector<int>	tv2( arr2, arr2 + sizeof( arr2 ) / sizeof( int ) );
+		print_container( tv2.begin(), tv2.end(), "arr2" );
+		Span sp2 = Span( tv2.size() );
+		sp2.addRange( tv2.begin(), tv2.end() );
+		std::cout << MAGENTA << "shortestSpan: "
+				  << sp2.shortestSpan() << RESET << "\n";
+		std::cout << MAGENTA << "longestSpan: "
+				  << sp2.longestSpan() << RESET << "\n";
+		int arr3[] = { 1, 19, -4, 31, 38, 25, 100 };
+		std::vector<int>	tv3( arr3, arr3 + sizeof( arr3 ) / sizeof( int ) );
+		print_container( tv3.begin(), tv3.end(), "arr3" );
+		Span sp3 = Span( tv3.size() );
+		sp3.addRange( tv3.begin(), tv3.end() );
+		std::cout << MAGENTA << "shortestSpan: "
+				  << sp3.shortestSpan() << RESET << "\n";
+		std::cout << MAGENTA << "longestSpan: "
+				  << sp3.longestSpan() << RESET << "\n";
+	}
+	{
 		std::cout << GREEN <<"\t--> 10000 numbers TEST: <--" << RESET << "\n";
 		std::vector<int>	tv;
 		generate_test_case<std::vector<int>, 1000>( tv, 1000000000 );
@@ -92,21 +131,37 @@ int	main( void ) {
 	{
 		std::cout << GREEN <<"\t--> 10000 numbers TEST: <--" << RESET << "\n";
 		std::vector<int>	tv;
-		generate_test_case<std::vector<int>, 10000>( tv, 10000000 );
+		generate_test_case<std::vector<int>, 10000>( tv, 1000000000 );
 		Span sp = Span( tv.size() );
 		sp.addRange( tv.begin(), tv.end() );
 		std::cout << "shortestSpan: " << sp.shortestSpan() << "\n";
 		std::cout << "longestSpan: " << sp.longestSpan() << "\n";
 	}
 	{
-		std::cout << GREEN <<"\t--> 1000000 numbers TEST: <--" << RESET << "\n";
+		std::cout << GREEN <<"\t--> COPY TESTS: <--" << RESET << "\n";
 		std::vector<int>	tv;
-		generate_test_case<std::vector<int>, 1000000>( tv, 10000000 );
+		generate_test_case<std::vector<int>, 1000>( tv, 1000000000 );
 		Span sp = Span( tv.size() );
 		sp.addRange( tv.begin(), tv.end() );
-		std::cout << "!\n";
 		std::cout << "shortestSpan: " << sp.shortestSpan() << "\n";
 		std::cout << "longestSpan: " << sp.longestSpan() << "\n";
+		Span	spc1( sp );
+		Span	spc2;
+		spc2 = sp;
+		std::cout << "shortestSpan: " << spc1.shortestSpan() << "\n";
+		std::cout << "longestSpan: " << spc1.longestSpan() << "\n";
+		std::cout << "shortestSpan: " << spc2.shortestSpan() << "\n";
+		std::cout << "longestSpan: " << spc2.longestSpan() << "\n";
 	}
+//	{
+//		std::cout << GREEN <<"\t--> 1000000 numbers TEST: <--" << RESET << "\n";
+//		std::vector<int>	tv;
+//		generate_test_case<std::vector<int>, 1000000>( tv, 2100000000 );
+//		Span sp = Span( tv.size() );
+//		sp.addRange( tv.begin(), tv.end() );
+//		std::cout << "!\n";
+//		std::cout << "shortestSpan: " << sp.shortestSpan() << "\n";
+//		std::cout << "longestSpan: " << sp.longestSpan() << "\n";
+//	}
 	return ( 0 );
 }
