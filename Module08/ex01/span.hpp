@@ -2,6 +2,7 @@
 # define SPAN_HPP
 
 # include <vector>
+# include <set>
 # include <stdexcept>
 
 class Span {
@@ -21,12 +22,12 @@ public:
 	void	addRange( It begin, It end ) throw( std::logic_error );
 
 	int		shortestSpan( void ) const throw( std::logic_error );
-	int 	shortestSpan( bool ) const throw( std::logic_error );
 	int		longestSpan( void ) const throw( std::logic_error );
 private:
 	unsigned int 		N_;
 	unsigned int		count_;
 	std::vector<int>	cont_;
+	std::multiset<int>	map_;
 };
 
 template<class It>
@@ -35,6 +36,8 @@ void	Span::addRange( It begin, It end ) throw( std::logic_error ) {
 		throw ( std::logic_error( "cannot add elements range" ) );
 	this->count_ = std::distance( begin, end );
 	this->cont_.insert( this->cont_.end(), begin, end );
+	for (size_t i = 0; i < this->cont_.size(); i++)
+		this->map_.insert( this->cont_[i] );
 }
 
 #endif

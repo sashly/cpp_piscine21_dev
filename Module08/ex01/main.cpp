@@ -104,7 +104,8 @@ int	main( void ) {
 		generate_test_case<std::vector<int>, 1000000>( tv, 10000000 );
 		Span sp = Span( tv.size() );
 		sp.addRange( tv.begin(), tv.end() );
-		std::cout << "shortestSpan: " << sp.shortestSpan( true ) << "\n";
+		std::cout << "!\n";
+		std::cout << "shortestSpan: " << sp.shortestSpan() << "\n";
 		std::cout << "longestSpan: " << sp.longestSpan() << "\n";
 	}
 	return ( 0 );

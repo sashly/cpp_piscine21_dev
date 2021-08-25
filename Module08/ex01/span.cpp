@@ -1,5 +1,6 @@
 #include "span.hpp"
 #include <algorithm>
+#include <limits>
 
 Span::Span( void ) : N_( 0 ), count_( 0 ) {}
 
@@ -38,26 +39,23 @@ void	Span::addNumber( int const val ) throw( std::logic_error ) {
 		throw ( std::logic_error( "cannot add element - already full" ) );
 	this->count_++;
 	this->cont_.push_back( val );
+	this->map_.insert( val );
 }
 
 int		Span::shortestSpan( void ) const throw( std::logic_error ) {
 	if (this->count_ < 2)
 		throw ( std::logic_error( "must be at least 2 numbers to find span" ) );
-	std::vector<int>	sort( this->cont_ );
-	std::sort( sort.begin(), sort.end() );
-	return ( sort[1] - sort[0] );
-}
-
-int		Span::shortestSpan( bool ) const throw( std::logic_error ) {
-	if (this->count_ < 2)
-		throw ( std::logic_error( "must be at least 2 numbers to find span" ) );
-	std::vector<int>	tmp( this->cont_ );
-	int 				itmp;
-	std::vector<int>::iterator min = std::min_element( tmp.begin(), tmp.end() );
-	itmp = *min;
-	tmp.erase( min );
-	min = std::min_element( tmp.begin(), tmp.end() );
-	return ( *min - itmp );
+	int		min = std::numeric_limits<int>::max();
+	std::multiset<int>::iterator it_next = this->map_.begin();
+	it_next++;
+	for (std::multiset<int>::iterator it = this->map_.begin(); it != this->map_.end(); it++) {
+		if (*it_next - *it < min)
+			min = *it_next - *it;
+		if (min == 0)
+			return ( 0 );
+		it_next++;
+	}
+	return ( min );
 }
 
 int		Span::longestSpan( void ) const throw( std::logic_error ) {
