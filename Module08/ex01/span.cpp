@@ -48,7 +48,7 @@ int		Span::shortestSpan( void ) const throw( std::logic_error ) {
 	int		min = std::numeric_limits<int>::max();
 	std::multiset<int>::iterator it_next = this->map_.begin();
 	it_next++;
-	for (std::multiset<int>::iterator it = this->map_.begin(); it != this->map_.end(); it++) {
+	for (std::multiset<int>::iterator it = this->map_.begin(); it_next != this->map_.end(); it++) {
 		if (*it_next - *it < min)
 			min = *it_next - *it;
 		if (min == 0)

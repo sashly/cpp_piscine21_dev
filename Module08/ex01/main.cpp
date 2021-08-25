@@ -82,7 +82,7 @@ int	main( void ) {
 	{
 		std::cout << GREEN <<"\t--> 10000 numbers TEST: <--" << RESET << "\n";
 		std::vector<int>	tv;
-		generate_test_case<std::vector<int>, 1000>( tv, 10000 );
+		generate_test_case<std::vector<int>, 1000>( tv, 1000000000 );
 		Span sp = Span( tv.size() );
 		for (size_t i = 0; i < tv.size(); i++)
 			sp.addNumber( tv[i] );
@@ -92,7 +92,7 @@ int	main( void ) {
 	{
 		std::cout << GREEN <<"\t--> 10000 numbers TEST: <--" << RESET << "\n";
 		std::vector<int>	tv;
-		generate_test_case<std::vector<int>, 10000>( tv, 100000 );
+		generate_test_case<std::vector<int>, 10000>( tv, 10000000 );
 		Span sp = Span( tv.size() );
 		sp.addRange( tv.begin(), tv.end() );
 		std::cout << "shortestSpan: " << sp.shortestSpan() << "\n";
