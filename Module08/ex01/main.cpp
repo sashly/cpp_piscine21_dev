@@ -81,7 +81,7 @@ int	main( void ) {
 	}
 	{
 		std::cout << GREEN <<"\t--> SOME TESTS: <--" << RESET << "\n";
-		int arr0[] = { -2147483648, 2147483647 };
+		int arr0[] = { -1123211200, 2147483647 };
 		std::vector<int>	tv0( arr0, arr0 + sizeof( arr0 ) / sizeof( int ) );
 		print_container( tv0.begin(), tv0.end(), "arr0" );
 		Span sp0 = Span( tv0.size() );

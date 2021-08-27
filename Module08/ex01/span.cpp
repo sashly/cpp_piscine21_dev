@@ -47,12 +47,12 @@ void	Span::addNumber( int const val ) throw( std::logic_error ) {
 unsigned int	Span::shortestSpan( void ) const throw( std::logic_error ) {
 	if (this->count_ < 2)
 		throw ( std::logic_error( "must be at least 2 numbers to find span" ) );
-	int		min = std::numeric_limits<int>::max();
+	unsigned int	min = std::numeric_limits<unsigned int>::max();
 	std::multiset<int>::const_iterator it_next = this->map_.begin();
 	it_next++;
 	for (std::multiset<int>::const_iterator it = this->map_.begin();
 							it_next != this->map_.end(); it++, it_next++) {
-		if (*it_next - *it < min)
+		if (static_cast<unsigned int>( *it_next - *it ) < min)
 			min = *it_next - *it;
 		if (min == 0)
 			return ( 0 );
