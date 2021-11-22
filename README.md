@@ -7,6 +7,9 @@
 # Piscine CPP
 ***This project is about fundamentals of C++ and contains 9 modules.***
 
+> For the C++ modules you will use and learn C++98 only. The goal is for you to learn
+the basic of an object oriented programming language..
+
 ---
 
 - [Module00](./Module00) **Namespace, class, member functions, stdio stream,
